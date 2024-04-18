@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registration Form</title>
+    <!-- Include Bootstrap CSS -->
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="app" class="container mt-5">
+      <!-- Form is  here -->
+      <form @submit.prevent="submitForm()" class="p-3">
+        <fieldset class="mb-3">
+            <legend>Personal Information</legend>
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" class="form-control" id="firstName" v-model="formData.firstName">
+                <p class="text-danger" v-if="errors.firstName">{{ errors.firstName }}</p>
+            </div>
+    
+            <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" class="form-control" id="lastName" v-model="formData.lastName">
+                <p class="text-danger" v-if="errors.lastName">{{ errors.lastName }}</p>
+            </div>
+    
+            <div class="form-group">
+                <label for="userName">User Name</label>
+                <input type="text" class="form-control" id="userName" v-model="formData.userName">
+                <p class="text-danger" v-if="errors.userName">{{ errors.userName }}</p>
+            </div>
+    
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" v-model="formData.password">
+                <p class="text-danger" v-if="errors.password">{{ errors.password }}</p>
+            </div>
+    
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" class="form-control" id="confirmPassword" v-model="formData.confirmPassword">
+                <p class="text-danger" v-if="errors.confirmPassword">{{ errors.confirmPassword }}</p>
+            </div>
+    
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" v-model="formData.email">
+                <p class="text-danger" v-if="errors.email">{{ errors.email }}</p>
+            </div>
+        </fieldset>
+    
+        <fieldset class="mb-3">
+            <legend>Address Details</legend>
+            <div class="form-group">
+                <label for="streetAddress">Street Address</label>
+                <input type="text" class="form-control" id="streetAddress" v-model="formData.streetAddress" maxlength="40">
+            </div>
+    
+            <div class="form-group">
+                <label for="suburb">Suburb</label
+                <input type="text" class="form-control" id="suburb" v-model="formData.suburb" maxlength="20">
+            </div>
+    
+            <div class="form-group">
+                <label for="postcode">Postcode</label>
+                <input type="text" class="form-control" id="postcode" v-model="formData.postcode">
+                <p class="text-danger" v-if="errors.postcode">{{ errors.postcode }}</p>
+            </div>
+    
+            <div class="form-group">
+                <label for="mobileNumber">Mobile Number</label>
+                <input type="text" class="form-control" id="mobileNumber" v-model="formData.mobileNumber">
+                <p class="text-danger" v-if="errors.mobileNumber">{{ errors.mobileNumber }}</p>
+            </div>
+        </fieldset>
+    
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="button" class="btn btn-secondary" @click="toggleTerms">Show Terms and Conditions</button>
+        <div v-if="termsShown">
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+
+              .</p>
+        </div>
+    </form>
+    
+    </div>
+
+    <!-- Include Vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <!-- Include your custom JS file -->
+    <script src="app.js"></script>
+  </body>
+</html>

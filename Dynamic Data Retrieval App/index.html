@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fetch Data Example</title>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  </head>
+  <body>
+    <div id="app" class="container mt-5">
+      <h1>Data Fetch Example</h1>
+      <ul class="list-group">
+        <li class="list-group-item" v-for="post in posts">
+          {{ post.id }}: {{ post.title }}
+        </li>
+      </ul>
+    </div>
+
+    <script src="./index.js"></script>
+  </body>
+</html>
