@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Number Guessing Game</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  </head>
+  <body>
+    <h1>Number Guessing Game</h1>
+    <div id="app">
+      <h2>{{ message }}</h2>
+      <div>
+        <p>Enter you guess from 1-100</p>
+        <input v-model="guess" type="number" placeholder="Enter your guess" />
+      </div>
+      <button @click="checkGuess">Check Guess</button>
+      <button @click="giveUp">Give Up</button>
+      <button @click="startOver">Start Over</button>
+    </div>
+
+    <script>
+      // JavaScript
+      new Vue({
+        el: '#app',
+        data: {
+          guess: '', //  bind to the input field for the guess
+          numberToGuess: 0, //  randomly generated number to guess
+          message: 'Start guessing...', // Initial message displayed to the user
+        },
+        methods: {
+          // generate a random number between 1 and 100
+          generateRandomNumber() {
+            this.numberToGuess = Math.floor(Math.random() * 100) + 1;
+          },
+          // check the user's guess against the generated number
+          checkGuess() {
+            const userGuess = parseInt(this.guess, 10); // guess is an integer
+
+            if (isNaN(userGuess)) {
+              this.message = 'Please enter a valid number';
+              return;
+            }
+
+            if (userGuess < this.numberToGuess) {
+              this.message = 'Guess higher!';
+            } else if (userGuess > this.numberToGuess) {
+              this.message = 'Guess lower!';
+            } else {
+              this.message = 'You got it! The number was ' + this.numberToGuess;
+            }
+          },
+          // allow the user to give up and see the correct answer
+          giveUp() {
+            this.message =
+              'The number was ' + this.numberToGuess + '. Try again!';
+            this.startOver(); // Optionally start over after giving up
+          },
+
+          giveUp() {
+            this.message =
+              'The number was ' + this.numberToGuess + '. Try again!';
+            // this.startOver(); // Comment out or remove this line to prevent the game from starting over automatically
+          },
+
+          // reset the game
+          startOver() {
+            this.generateRandomNumber();
+            this.guess = '';
+            this.message = 'Start guessing...';
+          },
+        },
+        // generate the first random number when the app is created
+        created() {
+          this.generateRandomNumber();
+        },
+      });
+    </script>
+  </body>
+</html>

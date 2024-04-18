@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Status Posting App</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>Status</h1>
+      <input v-model="newStatus" placeholder="Write a status..." />
+      <button @click="postStatus">Post</button>
+      <ul>
+        <li v-for="(status, index) in statuses" :key="index">
+          {{ status }}
+          <button @click="deleteStatus(index)">Delete</button>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Import Vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <!-- Application Script -->
+    <script src="app.js"></script>
+  </body>
+</html>

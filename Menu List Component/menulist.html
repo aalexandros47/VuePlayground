@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menu List App</title>
+    <!-- Load Vue.js from CDN -->
+    <script src="https://unpkg.com/vue@3.2.31"></script>
+  </head>
+  <body>
+    <div id="app">
+      <!-- The custom Vue component with bound properties -->
+      <mymenu v-bind:menu="['Home', 'Settings', 'About']"></mymenu>
+    </div>
+    <script src="./appmenulist.js"></script>
+  </body>
+</html>

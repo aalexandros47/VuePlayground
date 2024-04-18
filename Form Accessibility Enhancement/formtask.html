@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>WAI Form Task</title>
+    <meta charset="utf-8" />
+    <meta name="language" content="english" />
+    <meta name="keywords" content="Accessibility, Lab, Tasks" />
+    <meta name="description" content="An example form demonstrating web accessibility principles." />
+</head>
+<body>
+    <h1>WAI Form Example</h1>
+    <form method="post" action="http://mercury.swin.edu.au/it000000/formtest.php">
+        <fieldset>
+            <legend>Contact Information</legend>
+            <label for="cname">Name:</label>
+            <input type="text" name="cname" id="cname" aria-required="true" /><br />
+            <label for="cemail">E-mail Address:</label>
+            <input type="email" name="cemail" id="cemail" aria-required="true" /><br />
+            <label for="caddr">Mailing Address:</label><br />
+            <textarea name="caddr" id="caddr" rows="4" cols="40" aria-required="true"></textarea>
+        </fieldset>
+        <fieldset>
+            <legend>Credit Card Information</legend>
+            <label for="cvisa"><input type="radio" name="card" id="cvisa" value="visa" /> Visa</label>
+            <label for="cmc"><input type="radio" name="card" id="cmc" value="mc" /> MasterCard</label><br />
+            <label for="cnumber">Number:</label>
+            <input type="text" name="number" id="cnumber" aria-required="true" /><br />
+            <label for="cexpiry">Expiry:</label>
+            <input type="text" name="expiry" id="cexpiry" aria-required="true" placeholder="MM/YY" />
+        </fieldset>
+        <label for="clearOrder" class="visually-hidden">Clear all form entries</label>
+        <input type="reset" id="clearOrder" value="Clear order" />
+        <input type="submit" value="Submit order" />
+    </form>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String Test Web App</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app" class="container">
+        <h1>String Test</h1> 
+        <label for="userNameInput">Enter your name:</label> 
+        <input id="userNameInput" type="text" v-model="userName">
+        <button @click="checkName">Submit</button>
+        <p>{{ message }}</p>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                userName: '',
+                myName: 'Arnob', 
+                message: ''
+            },
+            methods: {
+                checkName() {
+                    if (this.userName.toLowerCase() === this.myName.toLowerCase()) {
+                        this.message = 'Awesome name!';
+                    } else {
+                        this.message = this.userName + ' is not my name';
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
