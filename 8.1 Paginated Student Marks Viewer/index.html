@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Marks</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container" id="app">
+      <!-- Title for the page -->
+      <div class="row">
+        <div class="col-md-12">
+          <h1>Student Marks</h1>
+        </div>
+      </div>
+      <!-- Component for displaying and paginating student marks -->
+      <app-student-marks></app-student-marks>
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/vuejs-paginate-next@latest/dist/vuejs-paginate-next.umd.js"></script>
+    <script src="./index.js"></script>
+  </body>
+</html>
