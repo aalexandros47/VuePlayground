@@ -1,13 +1,13 @@
 // Define the Home component
 const Home = {
   template: `
-        <div>
-            <h1>Welcome to the SPA</h1>
-            <p>Please navigate to the login page or the dashboard.</p>
-            <router-link to="/login">Go to Login</router-link>
-            <router-link to="/dashboard">Go to Dashboard</router-link>
-        </div>
-    `,
+    <div class="container mt-5">
+      <h1>Welcome to the SPA</h1>
+      <p>Please navigate to the login page or the dashboard.</p>
+      <router-link to="/login" class="btn btn-primary me-2">Go to Login</router-link>
+      <router-link to="/dashboard" class="btn btn-secondary">Go to Dashboard</router-link>
+    </div>
+  `,
 };
 
 // Define the Dashboard component
@@ -35,64 +35,77 @@ const Dashboard = {
   },
   methods: {
     fetchData() {
-      console.log('Fetching data...');
       fetch('units.json')
         .then((response) => response.json())
         .then((data) => {
-          console.log('Data fetched:', data);
           this.units = data;
         })
         .catch((error) => console.error('Error fetching data:', error));
     },
     addUnit() {
-      console.log('Adding unit:', this.newUnit);
       this.units.push(this.newUnit);
       this.newUnit = { code: '', desc: '', cp: '', type: '' };
     },
     updateUnit(unit) {
-      console.log('Updating unit:', unit);
       const index = this.units.findIndex((u) => u.code === unit.code);
       if (index !== -1) {
         this.$set(this.units, index, unit);
       }
     },
     deleteUnit(unit) {
-      console.log('Deleting unit:', unit);
       const index = this.units.findIndex((u) => u.code === unit.code);
       if (index !== -1) {
         this.units.splice(index, 1);
       }
     },
     selectUnit(unit) {
-      console.log('Selecting unit:', unit);
       this.selectedUnit = { ...unit };
     },
   },
   template: `
-        <div>
-            <h2>Dashboard</h2>
-            <div v-if="selectedUnit">
-                <h3>Edit Unit</h3>
-                <input v-model="selectedUnit.desc" placeholder="Description">
-                <button @click="updateUnit(selectedUnit)">Update</button>
-                <button @click="deleteUnit(selectedUnit)">Delete</button>
-            </div>
-            <div>
-                <h3>Add New Unit</h3>
-                <input v-model="newUnit.desc" placeholder="Description">
-                <button @click="addUnit">Add</button>
-            </div>
-            <table class="table">
-                <tr v-for="unit in paginatedUnits" :key="unit.code">
-                    <td>{{ unit.desc }}</td>
-                    <td>{{ unit.code }}</td>
-                    <td><button @click="selectUnit(unit)">Edit</button></td>
-                </tr>
-            </table>
-            <button v-if="currentPage > 1" @click="currentPage--">Prev</button>
-            <button v-if="currentPage < pageCount" @click="currentPage++">Next</button>
+    <div class="container mt-5">
+      <h2>Dashboard</h2>
+      <div v-if="selectedUnit" class="mb-4">
+        <h3>Edit Unit</h3>
+        <div class="mb-3">
+          <label class="form-label">Description</label>
+          <input v-model="selectedUnit.desc" class="form-control">
         </div>
-    `,
+        <button @click="updateUnit(selectedUnit)" class="btn btn-success me-2">Update</button>
+        <button @click="deleteUnit(selectedUnit)" class="btn btn-danger">Delete</button>
+      </div>
+      <div class="mb-4">
+        <h3>Add New Unit</h3>
+        <div class="mb-3">
+          <label class="form-label">Description</label>
+          <input v-model="newUnit.desc" class="form-control">
+        </div>
+        <button @click="addUnit" class="btn btn-primary">Add</button>
+      </div>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Description</th>
+            <th>Code</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="unit in paginatedUnits" :key="unit.code">
+            <td>{{ unit.desc }}</td>
+            <td>{{ unit.code }}</td>
+            <td>
+              <button @click="selectUnit(unit)" class="btn btn-secondary btn-sm">Edit</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="d-flex justify-content-between">
+        <button v-if="currentPage > 1" @click="currentPage--" class="btn btn-outline-primary">Prev</button>
+        <button v-if="currentPage < pageCount" @click="currentPage++" class="btn btn-outline-primary">Next</button>
+      </div>
+    </div>
+  `,
 };
 
 // Define the Login component
@@ -115,22 +128,22 @@ const Login = {
     },
   },
   template: `
-        <div>
-            <h2>Login</h2>
-            <form @submit.prevent="login">
-                <div class="mb-3">
-                    <label for="username" class="form-label">Username</label>
-                    <input type="text" v-model="username" class="form-control" id="username" required>
-                </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" v-model="password" class="form-control" id="password" required>
-                </div>
-                <button type="submit" class="btn btn-primary">Login</button>
-                <p class="text-danger" v-if="errorMessage">{{ errorMessage }}</p>
-            </form>
+    <div class="container mt-5">
+      <h2>Login</h2>
+      <form @submit.prevent="login">
+        <div class="mb-3">
+          <label for="username" class="form-label">Username</label>
+          <input type="text" v-model="username" class="form-control" id="username" required>
         </div>
-    `,
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" v-model="password" class="form-control" id="password" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+        <p class="text-danger mt-3" v-if="errorMessage">{{ errorMessage }}</p>
+      </form>
+    </div>
+  `,
 };
 
 // Define the routes
